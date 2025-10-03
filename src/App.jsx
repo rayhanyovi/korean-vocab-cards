@@ -351,9 +351,11 @@ export default function AppPatched({ data = [] }) {
   return (
     <div className="min-h-screen bg-gradient-to-b from-indigo-50 to-white">
       <header className="sticky top-0 z-20 backdrop-blur bg-white/70 border-b">
-        <div className="max-w-6xl mx-auto px-4 py-3 flex items-center gap-3">
-          <BookOpen className="text-indigo-600" />
-          <div className="font-semibold">Korean Flashcards</div>
+        <div className="max-w-6xl mx-auto px-4 py-3 flex flex-col lg:flex-row items-center gap-3">
+          <div className="flex flex-row gap-2">
+            <BookOpen className="text-indigo-600" />
+            <div className="font-semibold">Korean Flashcards</div>
+          </div>
           <div className="ml-auto flex items-center gap-2">
             <button
               className="px-4 py-2 rounded-2xl shadow-sm border bg-white hover:bg-gray-50"
@@ -372,13 +374,12 @@ export default function AppPatched({ data = [] }) {
                 <Settings size={16} />
                 Settings
               </span>
-
-              <button
-                className="px-4 py-2 rounded-2xl shadow-sm border bg-white hover:bg-gray-50"
-                onClick={() => fileRef.current?.click()}
-              >
-                Import CSV/JSON
-              </button>
+            </button>
+            <button
+              className="px-4 py-2 rounded-2xl shadow-sm border bg-white hover:bg-gray-50"
+              onClick={() => fileRef.current?.click()}
+            >
+              Import CSV/JSON
             </button>
           </div>
         </div>
@@ -386,26 +387,34 @@ export default function AppPatched({ data = [] }) {
 
       <main className="max-w-6xl mx-auto px-4 py-6 space-y-6">
         <Card className="p-4">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-3 items-center">
-            <div className="flex items-center gap-2">
+          <div className="flex lg:flex-row flex-col gap-3 items-center ">
+            <div className="flex items-center gap-2 w-full lg:w-fit">
               <div className="text-sm text-gray-600">Level</div>
-              <Select value={level} onChange={(e) => setLevel(e.target.value)}>
+              <Select
+                value={level}
+                onChange={(e) => setLevel(e.target.value)}
+                className="w-full lg:w-fit"
+              >
                 <option value="beginner">Beginner</option>
                 <option value="intermediate">Intermediate</option>
                 <option value="advanced">Advanced</option>
               </Select>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 w-full lg:w-fit">
               <div className="text-sm text-gray-600">Mode</div>
-              <Select value={mode} onChange={(e) => setMode(e.target.value)}>
+              <Select
+                value={mode}
+                onChange={(e) => setMode(e.target.value)}
+                className="w-full lg:w-fit"
+              >
                 <option value="cards">Flash Cards</option>
                 <option value="quiz-mc">Quiz: Multiple Choice</option>
                 <option value="quiz-fill">Quiz: Fill in the Blank</option>
               </Select>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2  w-full lg:w-fit">
               <button
-                className="px-4 py-2 rounded-2xl shadow-sm border bg-white hover:bg-gray-50"
+                className="px-4 py-2 rounded-2xl shadow-sm border bg-white hover:bg-gray-50 w-full lg:w-fit"
                 onClick={() => setPlaying((p) => !p)}
               >
                 {playing ? (
@@ -413,13 +422,13 @@ export default function AppPatched({ data = [] }) {
                     <Pause size={16} /> Stop Auto
                   </span>
                 ) : (
-                  <span className="flex w-fit items-center gap-2">
+                  <span className="flex !w-fit items-center gap-2">
                     <Play size={16} /> Auto Play
                   </span>
                 )}
               </button>
               <button
-                className="px-4 py-2 rounded-2xl shadow-sm border bg-white hover:bg-gray-50"
+                className="px-4 py-2 rounded-2xl shadow-sm border bg-white hover:bg-gray-50 w-full lg:w-fit"
                 onClick={speakNow}
               >
                 <span className="inline-flex items-center gap-2">
